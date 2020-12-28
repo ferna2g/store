@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'st-login',
@@ -13,7 +15,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl('')
   });
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -21,6 +23,14 @@ export class LoginComponent implements OnInit {
   submit(){
     if(this.form.valid){
       console.log('Submit', this.form.value);
+      this.validateLogin(this.form.value)
+    }
+  }
+
+  private validateLogin(user: User){
+    if(user.username === 'admin' && user.password == 'admin'){
+      //redirection
+      this.router.navigate(['']);
     }
   }
 
