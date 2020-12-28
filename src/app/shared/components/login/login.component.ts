@@ -31,6 +31,9 @@ export class LoginComponent implements OnInit {
     if(user.username === 'admin' && user.password == 'admin'){
       //redirection
       this.router.navigate(['']);
+    } else {
+      console.error('Invalid credentials');
+
     }
   }
 
