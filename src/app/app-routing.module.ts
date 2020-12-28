@@ -7,6 +7,15 @@ const routes: Routes = [
   {
     path:'login',
     component: LoginComponent
+  },
+  {
+    path: '',  //localhost:4200/ -> /products -> /products/list
+    pathMatch: 'full',
+    redirectTo: 'products'
+  },
+  {
+    path: 'products',
+    loadChildren: () => import('./products/products.module').then(m => m.ProductsModule)
   }
 ];
 
