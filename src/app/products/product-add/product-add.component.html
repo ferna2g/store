@@ -1,1 +1,27 @@
-<p>product-add works!</p>
+<mat-card>
+    <mat-card-title>Add new product</mat-card-title>
+    <img mat-card-image src="">
+    <mat-card-content>
+        <form>
+            <mat-form-field>
+                <input type="text" matInput placeholder="Title">
+            </mat-form-field>
+            <mat-form-field>
+                <input type="text" matInput placeholder="Brand">
+            </mat-form-field>
+            <mat-form-field>
+                <input type="text" matInput placeholder="Price">
+            </mat-form-field>
+            <mat-form-field>
+                <input type="text" matInput placeholder="Sale Price">
+            </mat-form-field>
+            <mat-form-field>
+                <input type="text" matInput placeholder="Thumb Image URL">
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary">Add</button>
+        <button mat-raised-button>Cancel</button>
+    </mat-card-actions>
+</mat-card>
