@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from '../shared/services/products.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'st-product-edit',
@@ -21,7 +22,9 @@ export class ProductEditComponent implements OnInit {
   id: string;
 
   constructor(private route: ActivatedRoute,
-              private service: ProductsService) { }
+              private service: ProductsService,
+              private router: Router,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -40,14 +43,19 @@ export class ProductEditComponent implements OnInit {
       product.id = this.id;
       console.log('going to update', product);
       this.service.update(product)
-      .subscribe(result => console.log('update finished', result));
+      .subscribe(result => {
+        console.log('update finished', result);
 
-      )
+        this.router.navigate(['/products']);
+        this.snackBar.open('Product has been update', 'Close'{
+          duration: 3000
+        });
+      });
     }
   }
 
   cancel() {
-
+    this.router.navigate(['products']);
   }
 
 }
