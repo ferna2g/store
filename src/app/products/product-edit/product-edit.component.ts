@@ -45,9 +45,8 @@ export class ProductEditComponent implements OnInit {
       this.service.update(product)
       .subscribe(result => {
         console.log('update finished', result);
-
         this.router.navigate(['/products']);
-        this.snackBar.open('Product has been update', 'Close'{
+        this.snackBar.open('Product has been update', 'Close', {
           duration: 3000
         });
       });
