@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { ProductsService } from '../shared/services/products.service';
 
 @Component({
   selector: 'st-product-edit',
@@ -16,9 +18,20 @@ export class ProductEditComponent implements OnInit {
     thumbImage: new FormControl(''),
   });
 
-  constructor() { }
+  id: string;
+
+  constructor(private route: ActivatedRoute,
+              private service: ProductsService) { }
 
   ngOnInit() {
+    this.id = this.route.snapshot.paramMap.get('id');
+    // GET /products/id
+    this.service.get(this.id)
+        .subscribe(product => {
+          console.log('product', product);
+          //this.form.setValue(product);
+          this.form.patchValue(product);
+        });
   }
 
 }

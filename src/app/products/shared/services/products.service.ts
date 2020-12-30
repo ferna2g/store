@@ -20,4 +20,9 @@ export class ProductsService {
     // /products: POST
     return this.httpClient.post<Product>(`${PRODUCTS_URL}`, product);
   }
+
+  get(id: string): Observable<Product> {
+    //products/id
+    return this.httpClient.get<Product>(`${PRODUCTS_URL}/${id}`);
+  }
 }
