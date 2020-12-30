@@ -22,7 +22,12 @@ export class ProductsService {
   }
 
   get(id: string): Observable<Product> {
-    //products/id
+     //GET /products/id
     return this.httpClient.get<Product>(`${PRODUCTS_URL}/${id}`);
+  }
+
+  update(product: Product): Observable<Product>{
+    //UPDATE /products/id
+    return this.httpClient.put<Product>(`${PRODUCTS_URL}/${product.id}`, product);
   }
 }
