@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { ProductsService } from '../shared/services/products.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
+import { Product } from '../shared/models/product';
 
 @Component({
   selector: 'st-product-add',
@@ -11,14 +12,6 @@ import { MatSnackBar } from '@angular/material';
 })
 export class ProductAddComponent implements OnInit {
 
-  form: FormGroup = new FormGroup({
-    title: new FormControl(''),
-    brand: new FormControl(''),
-    price: new FormControl(''),
-    salePrice: new FormControl(''),
-    thumbImage: new FormControl(''),
-  });
-
   constructor(private service: ProductsService,
               private router: Router,
               private snackBar: MatSnackBar) { }
@@ -26,9 +19,7 @@ export class ProductAddComponent implements OnInit {
   ngOnInit() {
   }
 
-  submit(){
-    if(this.form.valid){
-      const product = this.form.value; //Product
+  submit(product: Product){
       console.log('Going to save', product);
       this.service.add(product)
         .subscribe(result => {
@@ -39,10 +30,6 @@ export class ProductAddComponent implements OnInit {
             duration: 3000 //miliseconds
           })
         })
-    }else {
-      console.error('Form is invalid');
-
-    }
   }
 
   cancel(){
