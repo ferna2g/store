@@ -63,6 +63,7 @@ export class ProductListComponent implements OnInit {
       this.loadProducts();
       this.snackBar.open('Product has been deleted', 'Close', {
         duration: 3000
+    
       })
     })
   }

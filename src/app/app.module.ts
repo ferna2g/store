@@ -18,7 +18,13 @@ import { ProductsModule } from './products/products.module';
     SharedModule,
     ProductsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ProgressIndicatorInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
