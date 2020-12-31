@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../shared/services/products.service';
 import { Product } from '../shared/models/product';
-import { MatSnackBar } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
+import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogModel } from '../../shared/models/confirm-dialog-model';
 
 @Component({
   selector: 'st-product-list',
@@ -13,13 +15,38 @@ export class ProductListComponent implements OnInit {
   products: Product[];
 
   constructor(private service: ProductsService,
-              private snackBar: MatSnackBar) { }
+              private snackBar: MatSnackBar,
+              private dialog: MatDialog) { }
 
   ngOnInit() {
     this.loadProducts();
   }
 
   deleteProduct(product: Product){
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      maxWidth: '600px',
+      data: <ConfirmDialogModel>{
+        title: 'Delete Product',
+        message: 'Are you sure to delete this product?'
+      }
+    });
+
+    dialogRef.afterClosed()
+    .subscribe(result => {
+      if(result) {
+        this.sendDeleteRequest(product);
+
+      }
+    });
+  }
+
+  private loadProducts(){
+    this.service.getAll()
+    .subscribe(result => this.products = result);
+  }
+
+  private sendDeleteRequest(product: Product) {
     this.service.delete(product.id)
     .subscribe(response => {
       console.log('Product has been deleted', response);
@@ -28,10 +55,5 @@ export class ProductListComponent implements OnInit {
         duration: 3000
       })
     })
-  }
-
-  private loadProducts(){
-    this.service.getAll()
-    .subscribe(result => this.products = result);
   }
 }

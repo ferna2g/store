@@ -19,7 +19,9 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     RouterModule
   ],
   exports: [
-    ToolbarComponent
-  ]
+    ToolbarComponent,
+    ConfirmDialogComponent
+  ],
+  entryComponents: [ConfirmDialogComponent]
 })
 export class SharedModule { }
