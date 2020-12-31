@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from '../shared/services/products.service';
 import { MatSnackBar } from '@angular/material';
+import { Product } from '../shared/models/product';
 
 @Component({
   selector: 'st-product-edit',
@@ -11,15 +12,10 @@ import { MatSnackBar } from '@angular/material';
 })
 export class ProductEditComponent implements OnInit {
 
-  form: FormGroup = new FormGroup({
-    title: new FormControl(''),
-    brand: new FormControl(''),
-    price: new FormControl(''),
-    salePrice: new FormControl(''),
-    thumbImage: new FormControl(''),
-  });
+
 
   id: string;
+  product: Product;
 
   constructor(private route: ActivatedRoute,
               private service: ProductsService,
@@ -33,13 +29,13 @@ export class ProductEditComponent implements OnInit {
         .subscribe(product => {
           console.log('product', product);
           //this.form.setValue(product);
-          this.form.patchValue(product);
+          //this.form.patchValue(product);
+          this.product = product;
         });
   }
 
   submit(){
-    if(this.form.valid){
-      const product = this.form.value;
+    const product = this.product;
       product.id = this.id;
       console.log('going to update', product);
       this.service.update(product)
@@ -50,7 +46,6 @@ export class ProductEditComponent implements OnInit {
           duration: 3000
         });
       });
-    }
   }
 
   cancel() {
