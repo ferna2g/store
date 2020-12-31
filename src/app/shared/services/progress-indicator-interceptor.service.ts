@@ -13,6 +13,7 @@ export class ProgressIndicatorInterceptor implements HttpInterceptor {
     return next.handle(req)
             .pipe(
               tap(value => this.service.show()),
+              delay(1000),
               finalize(() => this.service.hide())
             );
   } 

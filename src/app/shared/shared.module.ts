@@ -21,6 +21,7 @@ import { ProgressIndicatorComponent } from './components/progress-indicator/prog
   ],
   exports: [
     ToolbarComponent,
+    ProgressIndicatorComponent,
     ConfirmDialogComponent
   ],
   entryComponents: [ConfirmDialogComponent]
