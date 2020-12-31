@@ -5,6 +5,7 @@ import { ProductsService } from '../shared/services/products.service';
 import { MatSnackBar } from '@angular/material';
 import { Product } from '../shared/models/product';
 import { catchError } from 'rxjs/operators';
+import { EMPTY } from 'rxjs';
 
 @Component({
   selector: 'st-product-edit',
