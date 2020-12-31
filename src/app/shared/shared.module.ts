@@ -6,11 +6,12 @@ import { PruebaComponent } from './components/prueba/prueba.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { RouterModule } from '@angular/router';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 
 
 @NgModule({
-  declarations: [LoginComponent, PruebaComponent, ToolbarComponent],
+  declarations: [LoginComponent, PruebaComponent, ToolbarComponent, ConfirmDialogComponent],
   imports: [
     CommonModule,
     MaterialModule,
