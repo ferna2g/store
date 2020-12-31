@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from '../shared/services/products.service';
 import { MatSnackBar } from '@angular/material';
 import { Product } from '../shared/models/product';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'st-product-edit',
@@ -26,6 +27,14 @@ export class ProductEditComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     // GET /products/id
     this.service.get(this.id)
+        .pipe(
+          catchError(error => {
+            this.snackBar.open('Cannot get Product details at this moment. Please try again later', null, {
+              duration: 3000
+            })
+            return EMPTY;
+          })
+        )
         .subscribe(product => {
           console.log('product', product);
           //this.form.setValue(product);

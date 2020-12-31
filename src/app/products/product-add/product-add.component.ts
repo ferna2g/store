@@ -4,6 +4,8 @@ import { ProductsService } from '../shared/services/products.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { Product } from '../shared/models/product';
+import { EMPTY } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'st-product-add',
@@ -22,6 +24,14 @@ export class ProductAddComponent implements OnInit {
   submit(product: Product){
       console.log('Going to save', product);
       this.service.add(product)
+        .pipe(
+          catchError(error => {
+            this.snackBar.open(error, null, {
+              duration: 3000
+            });
+            return EMPTY;
+          })
+        )
         .subscribe(result => {
           console.log('The product has been added', result);
           this.router.navigate(['']);
