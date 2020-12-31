@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor } from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { ProgressIndicatorService } from './progress-indicator.service';
+import { Observable } from 'rxjs';
+import { delay, finalize, tap } from 'rxjs/operators';
 
 //Angular interceptors
 
@@ -16,5 +19,5 @@ export class ProgressIndicatorInterceptor implements HttpInterceptor {
               delay(1000),
               finalize(() => this.service.hide())
             );
-  } 
+  }
 }
