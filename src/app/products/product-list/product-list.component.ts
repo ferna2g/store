@@ -51,7 +51,7 @@ export class ProductListComponent implements OnInit {
           duration: 3000
         });
         return EMPTY;
-      });
+      })
     )
     .subscribe(result => this.products = result);
   }
@@ -63,7 +63,7 @@ export class ProductListComponent implements OnInit {
       this.loadProducts();
       this.snackBar.open('Product has been deleted', 'Close', {
         duration: 3000
-    
+
       })
     })
   }

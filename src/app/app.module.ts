@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { ProductsModule } from './products/products.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ProgressIndicatorInterceptor } from './shared/services/progress-indicator-interceptor.service';
 
 @NgModule({
   declarations: [
